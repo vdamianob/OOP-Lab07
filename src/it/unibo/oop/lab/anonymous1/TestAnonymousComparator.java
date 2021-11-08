@@ -23,7 +23,7 @@ public final class TestAnonymousComparator {
 
     private TestAnonymousComparator() { }
 
-    /**
+    /** asd
      * Check whether the users in result list are in the same order as those in
      * expected.
      * 
