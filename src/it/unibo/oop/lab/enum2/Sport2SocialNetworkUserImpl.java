@@ -125,6 +125,14 @@ public class Sport2SocialNetworkUserImpl<U extends User> extends SocialNetworkUs
     			return s.isIndividualSport();
     		}
     	});
+    	
+    	/*Set<Sport> individualSports = new HashSet<>(); perchè così non va?
+    	for (Sport elem : this.sports) {
+    		if (elem.isIndoorSport()) {
+    			individualSports.add(elem);
+    		}
+    	}
+    	 return individualSports; */
     }
     
     public Set<Sport> getSportPracticedInPlace(Place p) {
