@@ -3,6 +3,10 @@
  */
 package it.unibo.oop.lab.enum2;
 
+import java.util.HashSet;
+import java.util.Set;
+
+//import it.unibo.oop.lab.enum2.Sport;
 import it.unibo.oop.lab.socialnetwork.SocialNetworkUserImpl;
 import it.unibo.oop.lab.socialnetwork.User;
 
@@ -30,7 +34,7 @@ public class Sport2SocialNetworkUserImpl<U extends User> extends SocialNetworkUs
      * 
      * add a field to keep track of the set of sports followed/done by a user
      */
-
+	private final Set<Sport> sports;
     /**
      * Builds a new {@link Sport2SocialNetworkUserImpl}.
      * 
@@ -61,6 +65,7 @@ public class Sport2SocialNetworkUserImpl<U extends User> extends SocialNetworkUs
      */
     public Sport2SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
         super(name, surname, user, userAge);
+        this.sports = new HashSet<>();
     }
 
     /*
@@ -75,7 +80,7 @@ public class Sport2SocialNetworkUserImpl<U extends User> extends SocialNetworkUs
      *            a sport followed/done by the user
      */
     public void addSport(final Sport sport) {
-
+    	this.sports.add(sport);
     }
 
     /**
@@ -87,7 +92,7 @@ public class Sport2SocialNetworkUserImpl<U extends User> extends SocialNetworkUs
      * @return true if user likes sport s
      */
     public boolean likesSport(final Sport s) {
-        return false;
+    	return this.sports.contains(s);
     }
 
     /*
@@ -114,4 +119,33 @@ public class Sport2SocialNetworkUserImpl<U extends User> extends SocialNetworkUs
     /*
      * public Set<Sport> getSportPracticedInPlace(Place p) { return null; }
      */
+    public Set<Sport> getIndividualSports() {
+    	return filterSports(new Condition<Sport>() {
+    		public boolean test(final Sport s) {
+    			return s.isIndividualSport();
+    		}
+    	});
+    }
+    
+    public Set<Sport> getSportPracticedInPlace(Place p) {
+    	return filterSports(new Condition<Sport>() {
+            public boolean test(final Sport s) {
+                return s.getPlace().equals(p);
+            }
+        });
+    }
+    
+    public Set<Sport> filterSports(final Condition<Sport> condition) {
+    	final Set<Sport> resultSet = new HashSet<>();
+    	for (final Sport elem : this.sports) {
+    		if (condition.test(elem)) {
+    			resultSet.add(elem);
+    		}
+    	}
+    	 return resultSet;
+    }
+    
+    private interface Condition<T> {
+    	boolean test(T t);
+    }
 }
