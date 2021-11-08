@@ -2,6 +2,7 @@
  * 
  */
 package it.unibo.oop.lab.enum2;
+import it.unibo.oop.lab.enum2.Place;
 
 /**
  * Represents an enumeration for declaring sports.
@@ -37,6 +38,13 @@ public enum Sport {
      * - soccer
      * 
      */
+	BASKET(5, "Basket", INDOOR),
+	VOLLEY(),
+	TENNIS(),
+	BIKE(),
+	F1(),
+	MOTOGP(),
+	SOCCER();
 
     /*
      * TODO
@@ -45,7 +53,10 @@ public enum Sport {
      * 
      * Declare required fields
      */
-
+	private final int n;
+	private final String name;
+	private final Place p;
+	
     /*
      * TODO
      * 
