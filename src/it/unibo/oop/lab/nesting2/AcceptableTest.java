@@ -91,6 +91,7 @@ public class AcceptableTest {
             fail("More elements were expected!");
         } catch (Acceptor.EndNotAcceptedException e) {
             assertNotNull(e);
+            System.out.println("Prova");
         }
     }
 
