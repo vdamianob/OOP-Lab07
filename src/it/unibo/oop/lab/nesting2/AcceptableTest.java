@@ -93,6 +93,7 @@ public class AcceptableTest {
             assertNotNull(e);
             System.out.println("Prova");
         }
+        System.out.println("Fine Prova");
     }
 
 }
